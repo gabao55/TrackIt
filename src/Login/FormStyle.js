@@ -23,20 +23,6 @@ const Form = styled.div`
     flex-direction: column;
     align-items: center;
 
-    input {
-        width: 100%;
-        height: 45px;
-        margin-bottom: 6px;
-        font-size: 20px;
-        padding-left: 12px;
-        border: 1px solid #D4D4D4;
-        border-radius: 5px;
-    }
-
-    input:focus {
-        outline: none;
-    }
-
     button {
         width: 100%;
         height: 45px;
