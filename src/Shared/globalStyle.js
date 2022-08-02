@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     article, aside, canvas, details, embed, 
     figure, figcaption, footer, header, hgroup, 
     menu, nav, output, ruby, section, summary,
-    time, mark, audio, video {
+    time, mark, audio, video, button {
         margin: 0;
         padding: 0;
         border: 0;
@@ -50,10 +50,29 @@ const GlobalStyle = createGlobalStyle`
         border-spacing: 0;
     }
 
-    * {
+    *, .root {
         box-sizing: border-box;
         font-family: 'Lexend Deca', sans-serif;
         font-weight: 400;
+    }
+
+    input {
+        width: 100%;
+        height: 45px;
+        padding-left: 12px;
+        margin-bottom: 8px;
+        font-size: 20px;
+        color: #666666;
+        border: 1px solid #D4D4D4;
+        border-radius: 5px;
+    }
+
+    input::placeholder {
+        color: #DBDBDB;
+    }
+
+    input:focus {
+        outline: none;
     }
 `
 
