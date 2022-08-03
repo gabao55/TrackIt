@@ -3,8 +3,25 @@ import Navbar from "../Shared/Navbar";
 import { MainWrapper } from "../Shared/styles";
 import checkmark from "../Shared/assets/Checkmark.png";
 import {DayWrapper, ListWrapper, HabitsDetails, HabitsCheckmark, Colored } from "./styles";
+import { useContext, useEffect, useState } from "react";
+import UserContext from "../../Contexts/UserContext";
+import { getTodayHabits } from "../Services/trackit";
 
 export default function Today() {
+    const [habits, setHabits] = useState({});
+    const { userData } = useContext(UserContext);
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${userData.token}`
+        }
+    };
+
+    console.log(userData);
+
+    useEffect(() => {
+        getTodayHabits(config).then(response => setHabits({...response.data}));
+    }, [])
+    
     return (
         <>
             <Navbar />

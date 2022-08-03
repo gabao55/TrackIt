@@ -28,7 +28,9 @@ export default function Register() {
 
         promise.catch(response => {
             alert("O cadastro deu errado, tente novamente");
+            // TODO: Change this reload for another approach that works
             window.location.reload();
+            // setIsLoading(!isLoading);
         });
     }
 
