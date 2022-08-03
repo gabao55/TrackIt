@@ -16,11 +16,11 @@ export default function Today() {
         }
     };
 
-    console.log(userData);
-
     useEffect(() => {
         getTodayHabits(config).then(response => setHabits({...response.data}));
     }, [])
+
+    console.log(habits);
     
     return (
         <>

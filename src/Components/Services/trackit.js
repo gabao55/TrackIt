@@ -10,8 +10,12 @@ function loginUser(body) {
     return axios.post(`${apiPath}/auth/login`, body)
 }
 
+function createHabit(body, config) {
+    return axios.post(`${apiPath}/habits`, body, config)
+}
+
 function getTodayHabits(config) {
     return axios.get(`${apiPath}/habits/today`, config)
 }
 
-export {registerUser, loginUser, getTodayHabits};
+export {registerUser, loginUser, getTodayHabits, createHabit};

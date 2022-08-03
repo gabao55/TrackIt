@@ -31,19 +31,27 @@ const CreateHabit = styled.div`
 const DaysWrapper = styled.div`
     margin-bottom: 30px;
     display: flex;
-    
-    span {
+
+    span, b {
         width: 30px;
         height: 30px;
         margin-right: 4px;
         font-size: 20px;
-        color: #D4D4D4;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
+    }
+    
+    span {
+        color: #D4D4D4;
+    }
+
+    b {
+        color: #FFFFFF;
+        background-color: #CFCFCF;
     }
 `;
 
@@ -67,6 +75,9 @@ const ActionWrapper = styled.div`
         background-color: #52B6FF;
         border: none;
         border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
     }
 `;
