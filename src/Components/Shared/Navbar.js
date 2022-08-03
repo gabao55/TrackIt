@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import styled from "styled-components";
-import bob from "./assets/Bob.png";
+import UserContext from "../../Contexts/UserContext";
 
 export default function Navbar() {
+    const { userData } = useContext(UserContext);
+
     return (
         <NavWrapper>
             <h1>TrackIt</h1>
-            <img src={bob} alt="Sponge bob" />
+            <img src={userData.image} alt="Sponge bob" />
         </NavWrapper>
     )
 }

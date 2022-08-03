@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
     const percentage = 50;
+    const navigate = useNavigate();
 
     return (
         <FooterWrapper>
-            <p>Hábitos</p>
-            <div>
+            <p onClick={() => navigate("/habitos")}>Hábitos</p>
+            <div onClick={() => navigate("/hoje")}>
                 <CircularProgressbar 
                 value={percentage} 
                 text="Hoje"
@@ -20,7 +22,7 @@ export default function Footer() {
                 })}
                 />
             </div>
-            <p>Histórico</p>
+            <p onClick={() => navigate("/historico")}>Histórico</p>
         </FooterWrapper>
     )
 }
