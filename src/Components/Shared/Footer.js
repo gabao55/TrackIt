@@ -43,10 +43,12 @@ const FooterWrapper = styled.footer`
         margin-bottom: 48px;
         background-color: #52B6FF;
         border-radius: 50%;
+        cursor: pointer;
     }
 
     p {
         font-size: 18px;
         color: #52B6FF;
+        cursor: pointer;
     }
 `;

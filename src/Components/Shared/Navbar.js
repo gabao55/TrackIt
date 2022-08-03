@@ -28,6 +28,7 @@ const NavWrapper = styled.nav`
         font-family: 'Playball';
         font-size: 40px;
         color: #FFFFFF;
+        cursor: pointer;
     }
 
     img {

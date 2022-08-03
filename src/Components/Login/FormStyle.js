@@ -32,6 +32,9 @@ const Form = styled.div`
         color: #FFFFFF;
         border: none;
         border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
     }
 
