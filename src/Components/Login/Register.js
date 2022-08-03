@@ -14,7 +14,6 @@ export default function Register() {
             ...form,
             [name]: value,
         });
-        console.log(form);
     }
 
     function sendForm(e) {
@@ -90,7 +89,10 @@ export default function Register() {
                     required
                     disabled={isLoading ? true : false}
                  />
-                <button onClick={sendForm}>{ isLoading ? <ThreeDots color="#FFFFFF" height={40} width={40} /> : "Cadastrar" }</button>
+                 {isLoading ?
+                    <button><ThreeDots color="#FFFFFF" height={40} width={40} /></button> :
+                    <button onClick={sendForm}>Cadastrar</button>
+                 }
                 <p onClick={() => navigate('/')}>Já tem uma conta? Faça login!</p>
             </Form>
         </Wrapper>

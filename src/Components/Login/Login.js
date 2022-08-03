@@ -7,7 +7,7 @@ import { Brand, Form, Wrapper } from "./FormStyle";
 
 export default function Login() {
     const [form, setForm] = useState({});
-    const [isLoading, setIsLoading] = useState();
+    const [isLoading, setIsLoading] = useState(false);
     const { setUserData } = useContext(UserContext);
     
     const navigate = useNavigate();
@@ -17,7 +17,6 @@ export default function Login() {
             ...form,
             [name]: value,
         });
-        console.log(form);
     }
 
     function sendForm(e) {
@@ -68,7 +67,10 @@ export default function Login() {
                     required
                     disabled={isLoading ? true : false}
                  />
-                <button onClick={sendForm}>{ isLoading ? <ThreeDots color="#FFFFFF" height={40} width={40} /> : "Entrar" }</button>
+                 {isLoading ?
+                    <button><ThreeDots color="#FFFFFF" height={40} width={40} /></button> :
+                    <button onClick={sendForm}>Entrar</button>
+                 }                
                 <p onClick={() => navigate('/cadastro')}>Não tem uma conta? Cadastre-se!</p>
             </Form>
         </Wrapper>
