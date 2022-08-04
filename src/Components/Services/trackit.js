@@ -22,4 +22,8 @@ function getTodayHabits(config) {
     return axios.get(`${apiPath}/habits/today`, config)
 }
 
-export {registerUser, loginUser, getTodayHabits, createHabit, getAllHabits};
+function deleteHabit(habitId, config) {
+    return axios.delete(`${apiPath}/habits/${habitId}`, config)
+}
+
+export {registerUser, loginUser, getTodayHabits, createHabit, getAllHabits, deleteHabit};

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import UserContext from "../../Contexts/UserContext";
-import { createHabit, getAllHabits } from "../Services/trackit";
+import { createHabit, deleteHabit, getAllHabits } from "../Services/trackit";
 import Footer from "../Shared/Footer";
 import Navbar from "../Shared/Navbar";
 import { MainWrapper } from "../Shared/styles";
@@ -13,6 +13,7 @@ export default function Habits() {
         name: ""
     });
     const [isLoading, setIsLoading] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
     const { userData } = useContext(UserContext);
     const [habitDays, setHabitDays] = useState([]);
     const config = {
@@ -56,7 +57,7 @@ export default function Habits() {
         getAllHabits(config).then(response => {
             setAllHabits(response.data);
         });
-    }, [isLoading]);
+    }, [isLoading, isDeleting]);
 
     function handleForm({ name, value }) {
         setForm({
@@ -79,6 +80,9 @@ export default function Habits() {
             setIsLoading(false);
             setIsCreatingHabit(false);
             setHabitDays([]);
+            setForm({
+                name: "",
+            })
         });
 
         promise.catch(() => alert("Erro ao criar hábito"));
@@ -126,7 +130,7 @@ export default function Habits() {
                 }
                 { allHabits.length === 0 ?
                     <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p> :
-                    allHabits.map((habit, index) => <HabitsList key={index} allDays={allDays} habit={habit} />)
+                    allHabits.map((habit, index) => <HabitsList key={index} allDays={allDays} habit={habit} isDeleting={isDeleting} setIsDeleting={setIsDeleting} />)
                 }
                 
             </MainWrapper>
@@ -176,7 +180,14 @@ function Days({ allDays, habitDays, setHabitDays, isLoading }) {
     )
 }
 
-function HabitsList({ allDays, habit }) {
+function HabitsList({ allDays, habit, isDeleting, setIsDeleting }) {
+    const { userData } = useContext(UserContext);
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${userData.token}`
+        }
+    };
+
     function renderDayBox(dayObj, habitDays) {
         if (habitDays.length === 0) {
             return <span key={dayObj.index}>{dayObj.letter}</span>
@@ -185,6 +196,17 @@ function HabitsList({ allDays, habit }) {
         <b key={dayObj.index}>{dayObj.letter}</b> :
         <span key={dayObj.index}>{dayObj.letter}</span>
     }
+
+    function deleteItem() {
+        const confirmation = window.confirm(`Você quer realmente deletar o hábito ${habit.name}`);
+        if (confirmation) {
+            deleteHabit(habit.id, config).then(response => {
+                setIsDeleting(!isDeleting);
+            });
+        }
+    }
+
+    console.log(habit.id);
 
     return (
         <>
@@ -195,7 +217,7 @@ function HabitsList({ allDays, habit }) {
                         return <Day key={day.index} dayObj={day} habitDays={habit.days} />
                     })}
                 </DaysWrapper>
-                <ion-icon name="trash-outline"></ion-icon>
+                <ion-icon name="trash-outline" onClick={deleteItem}></ion-icon>
             </HabitsWrapper>
         </>
     )
