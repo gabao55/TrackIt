@@ -54,6 +54,7 @@ justify-content: center;
 align-items: center;
 border: ${props => props.green ? "" : "1px solid #E7E7E7;"};
 border-radius: 5px;
+cursor: pointer;
 
 img {
     width: 35px;
