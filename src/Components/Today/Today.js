@@ -81,8 +81,8 @@ function HabitDetail({ habits }) {
                 <li key={habitIndex}>
                     <HabitsDetails>
                         <h3>{habit.name}</h3>
-                        <p>Sequência atual: <Colored green>{habit.currentSequence} dias</Colored></p>
-                        <p>Seu recorde: <Colored>{habit.highestSequence} dias</Colored></p>
+                        <p>Sequência atual: {habit.done ? <Colored green>{habit.currentSequence} dias</Colored> : <Colored>{habit.currentSequence} dias</Colored> }</p>
+                        <p>Seu recorde: {habit.currentSequence === habit.highestSequence ? <Colored green>{habit.highestSequence} dias</Colored> : <Colored>{habit.highestSequence} dias</Colored>}</p>
                     </HabitsDetails>
                     {habit.done ?
                         <HabitsCheckmark green>

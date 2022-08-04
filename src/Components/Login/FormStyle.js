@@ -17,7 +17,7 @@ const Logo = styled.img`
     margin: 68px 0 32px 0;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
     width: 300px;
     display: flex;
     flex-direction: column;

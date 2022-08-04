@@ -21,15 +21,13 @@ export default function Register() {
         setIsLoading(!isLoading);
         const promise = registerUser(form)
 
-        promise.then(response => {
+        promise
+        .then(response => {
             navigate('/');
-        });
-
-        promise.catch(response => {
+        })
+        .catch(() => {
             alert("O cadastro deu errado, tente novamente");
-            // TODO: Change this reload for another approach that works
-            window.location.reload();
-            // setIsLoading(!isLoading);
+            setIsLoading(false);
         });
     }
 
@@ -48,7 +46,7 @@ export default function Register() {
                         })
                     }}
                     required
-                    disabled={isLoading ? true : false}
+                    disabled={isLoading}
                  />
                 <input
                     type="password" 
@@ -61,7 +59,7 @@ export default function Register() {
                         })
                     }}
                     required
-                    disabled={isLoading ? true : false}
+                    disabled={isLoading}
                  />
                 <input
                     type="text" 

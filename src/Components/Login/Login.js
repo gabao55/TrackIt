@@ -21,19 +21,20 @@ export default function Login() {
 
     function sendForm(e) {
         e.preventDefault();
-        setIsLoading(!isLoading);
-        const promise = loginUser(form)
+        setIsLoading(true);
+        const promise = loginUser(form);
 
-        promise.then(response => {
+        promise
+        .then(response => {
+            console.log("b");
             setUserData(response.data);
             navigate('/hoje');
-        });
-
-        promise.catch(response => {
+        })
+        .catch(() => {
             alert("O login deu errado, tente novamente");
             // TODO: Change this reload for another approach that works
-            window.location.reload();
-            // setIsLoading(!isLoading);
+            // window.location.reload();
+            setIsLoading(false);
         });
     }
 
@@ -52,7 +53,7 @@ export default function Login() {
                         })
                     }}
                     required
-                    disabled={isLoading ? true : false}
+                    disabled={isLoading}
                  />
                 <input
                     type="password" 
@@ -65,11 +66,11 @@ export default function Login() {
                         })
                     }}
                     required
-                    disabled={isLoading ? true : false}
+                    disabled={isLoading}
                  />
                  {isLoading ?
                     <button><ThreeDots color="#FFFFFF" height={40} width={40} /></button> :
-                    <button onClick={sendForm}>Entrar</button>
+                    <button>Entrar</button>
                  }                
                 <p onClick={() => navigate('/cadastro')}>Não tem uma conta? Cadastre-se!</p>
             </Form>
