@@ -26,14 +26,11 @@ export default function Login() {
 
         promise
         .then(response => {
-            console.log("b");
             setUserData(response.data);
             navigate('/hoje');
         })
         .catch(() => {
             alert("O login deu errado, tente novamente");
-            // TODO: Change this reload for another approach that works
-            // window.location.reload();
             setIsLoading(false);
         });
     }

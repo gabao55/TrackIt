@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useContext, useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import UserContext from "../../Contexts/UserContext";
@@ -14,7 +15,7 @@ export default function Habits() {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
-    const { userData } = useContext(UserContext);
+    const { userData, setUserData } = useContext(UserContext);
     const [habitDays, setHabitDays] = useState([]);
     const config = {
         headers: {
@@ -76,16 +77,22 @@ export default function Habits() {
         
         const promise = createHabit(body, config);
 
-        promise.then(response => {
+        promise
+        .then(() => {
+            if (habitDays.includes(dayjs().day())) {
+                setUserData({
+                    ...userData,
+                    total : userData.total + 1,
+                });
+            }
             setIsLoading(false);
             setIsCreatingHabit(false);
             setHabitDays([]);
             setForm({
                 name: "",
-            })
-        });
-
-        promise.catch(() => {
+            });
+        })
+        .catch(() => {
             alert("Erro ao criar hábito");
             setIsLoading(false);
         });
@@ -184,26 +191,23 @@ function Days({ allDays, habitDays, setHabitDays, isLoading }) {
 }
 
 function HabitsList({ allDays, habit, isDeleting, setIsDeleting }) {
-    const { userData } = useContext(UserContext);
+    const { userData, setUserData } = useContext(UserContext);
     const config = {
         headers: {
             "Authorization": `Bearer ${userData.token}`
         }
     };
 
-    function renderDayBox(dayObj, habitDays) {
-        if (habitDays.length === 0) {
-            return <span key={dayObj.index}>{dayObj.letter}</span>
-        }
-        return habitDays.includes(dayObj.index) ?
-        <b key={dayObj.index}>{dayObj.letter}</b> :
-        <span key={dayObj.index}>{dayObj.letter}</span>
-    }
-
     function deleteItem() {
         const confirmation = window.confirm(`Você quer realmente deletar o hábito ${habit.name}`);
         if (confirmation) {
-            deleteHabit(habit.id, config).then(response => {
+            if (habit.days.includes(dayjs().day())) {
+                setUserData({
+                    ...userData,
+                    total : userData.total - 1,
+                });
+            }
+            deleteHabit(habit.id, config).then(() => {
                 setIsDeleting(!isDeleting);
             });
         }
