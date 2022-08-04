@@ -85,7 +85,10 @@ export default function Habits() {
             })
         });
 
-        promise.catch(() => alert("Erro ao criar hábito"));
+        promise.catch(() => {
+            alert("Erro ao criar hábito");
+            setIsLoading(false);
+        });
     }
 
     return (
