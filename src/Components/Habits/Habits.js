@@ -209,8 +209,6 @@ function HabitsList({ allDays, habit, isDeleting, setIsDeleting }) {
         }
     }
 
-    console.log(habit.id);
-
     return (
         <>
             <HabitsWrapper>
