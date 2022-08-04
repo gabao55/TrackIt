@@ -6,9 +6,10 @@ import {DayWrapper, ListWrapper, HabitsDetails, HabitsCheckmark, Colored } from 
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../Contexts/UserContext";
 import { getTodayHabits } from "../Services/trackit";
+import dayjs from "dayjs";
 
 export default function Today() {
-    const [habits, setHabits] = useState({});
+    const [habits, setHabits] = useState([]);
     const { userData } = useContext(UserContext);
     const config = {
         headers: {
@@ -18,20 +19,52 @@ export default function Today() {
 
     useEffect(() => {
         getTodayHabits(config).then(response => setHabits({...response.data}));
-    }, [])
+    }, []);
 
     console.log(habits);
+
+    function translateDay(dayNumber) {
+        let conversion;
+        switch (dayNumber) {
+            case 0:
+                conversion = "Domingo";
+                break;
+            case 1:
+                conversion = "Segunda";
+                break;
+            case 2:
+                conversion = "Terça";
+                break;
+            case 3:
+                conversion = "Quarta";
+                break;
+            case 4:
+                conversion = "Quinta";
+                break;
+            case 5:
+                conversion = "Sexta";
+                break;
+            default:
+                conversion = "Sábado"
+        }
+
+        return conversion
+    }
     
     return (
         <>
             <Navbar />
             <MainWrapper>
                 <DayWrapper>
-                    <h2>Segunda, 17/05</h2>
+                    <h2>{translateDay(dayjs().day())}, {dayjs().date()}/{dayjs().month()+1}</h2>
                     <p>Nenhum hábito concluído ainda!</p>
                 </DayWrapper>
                 <ListWrapper>
-                    <HabitDetail />
+                    {
+                        habits.length === 0 ?
+                        "" :
+                        <HabitDetail habits={habits} />
+                    }
                 </ListWrapper>
             </MainWrapper>
             <Footer />
@@ -39,38 +72,19 @@ export default function Today() {
     )
 }
 
-function HabitDetail() {
-    const habits = [
-        {
-            name: "Ler 1 capítulo de livro",
-            sequence: 3,
-            record: 5,
-            checked: true,
-        },
-        {
-            name: "Ler 1 capítulo de livro",
-            sequence: 3,
-            record: 5,
-            checked: false,
-        },
-        {
-            name: "Ler 1 capítulo de livro",
-            sequence: 3,
-            record: 5,
-            checked: false,
-        },
-    ]
-
+function HabitDetail({ habits }) {
     return (
         <>
-            {habits.map((habit, index) => (
-                <li key={index}>
+            {Object.keys(habits).map(habitIndex => { 
+                const habit = habits[habitIndex];
+                return (
+                <li key={habitIndex}>
                     <HabitsDetails>
                         <h3>{habit.name}</h3>
-                        <p>Sequência atual: <Colored green>{habit.sequence} dias</Colored></p>
-                        <p>Seu recorde: <Colored>{habit.record} dias</Colored></p>
+                        <p>Sequência atual: <Colored green>{habit.currentSequence} dias</Colored></p>
+                        <p>Seu recorde: <Colored>{habit.highestSequence} dias</Colored></p>
                     </HabitsDetails>
-                    {habit.checked ?
+                    {habit.done ?
                         <HabitsCheckmark green>
                             <img src={checkmark} alt="checkmark icon" />
                         </HabitsCheckmark> :
@@ -79,7 +93,7 @@ function HabitDetail() {
                         </HabitsCheckmark>
                      }
                 </li>
-            ))}
+            )})}
         </>
     )
 }
