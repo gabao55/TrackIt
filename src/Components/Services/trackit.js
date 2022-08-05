@@ -22,6 +22,10 @@ function uncheckHabit(habitId, config) {
     return axios.post(`${apiPath}/habits/${habitId}/uncheck`, {}, config)
 }
 
+function deleteHabit(habitId, config) {
+    return axios.delete(`${apiPath}/habits/${habitId}`, config)
+}
+
 function getAllHabits(config) {
     return axios.get(`${apiPath}/habits`, config)
 }
@@ -30,8 +34,8 @@ function getTodayHabits(config) {
     return axios.get(`${apiPath}/habits/today`, config)
 }
 
-function deleteHabit(habitId, config) {
-    return axios.delete(`${apiPath}/habits/${habitId}`, config)
+function getHistory(config) {
+    return axios.get(`${apiPath}/habits/history/daily`, config)
 }
 
-export {registerUser, loginUser, getTodayHabits, createHabit, checkHabit, uncheckHabit, getAllHabits, deleteHabit};
+export { registerUser, loginUser, getTodayHabits, createHabit, checkHabit, uncheckHabit, getAllHabits, deleteHabit, getHistory };
