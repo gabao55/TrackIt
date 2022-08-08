@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 
 export default function Today() {
     const [habits, setHabits] = useState([]);
+    const [changeState, setChangeState] = useState(0);
     const { userData, setUserData } = useContext(UserContext);
     const config = {
         headers: {
@@ -26,7 +27,7 @@ export default function Today() {
                 total : response.data.length,
             });
         });
-    }, [habits]);
+    }, [changeState]);
 
     function translateDay(dayNumber) {
         let conversion;
@@ -64,18 +65,20 @@ export default function Today() {
                 completed: userData.completed + 1
             });
             setHabits({...habits});
+            setChangeState(changeState+1);
         })
         .catch((error) => console.log(error));
     }
 
     function uncheck(habitId) {
         uncheckHabit(habitId, config)
-        .then(() => {
+        .then((response) => {
             setUserData({
                 ...userData,
                 completed: userData.completed - 1
             });
             setHabits({...habits});
+            setChangeState(changeState+1);
         })
         .catch((error) => console.log(error));
     }
