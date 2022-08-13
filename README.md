@@ -60,7 +60,7 @@ npm install npm@latest -g
 
 1. Clone this front-end repo
 ```sh
-git clone https://github.com/leandrodcs/trackIt.git
+git clone https://github.com/gabao55/TrackIt
 ```
 2. Install NPM packages for the repo
 ```sh
