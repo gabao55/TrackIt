@@ -34,14 +34,15 @@ So you can check your progress and the days you performed all the listed habits 
 ## Technologies
 
 The following tools and frameworks were used in the construction of the project:
-<p>
-  <img style='margin: 5px;' src='https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB'>
-  <img style='margin: 5px;' src='https://img.shields.io/badge/axios%20-%2320232a.svg?&style=for-the-badge&color=informational'>
-  <img style='margin: 5px;' src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
-  <img style='margin: 5px;' src='https://img.shields.io/badge/react-icons%20-%2320232a.svg?&style=for-the-badge&color=f28dc7&logo=react-icons&logoColor=%2361DAFB'>
-  <img style='margin: 5px;' src='https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white'>
-  <img style='margin: 5px;' src='https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white'>
-</p>
+
+- React.js
+- Axios
+- React Route
+- Syled-components
+- ion-icons, dayjs, React circular-progress-bar, React Calendar, React loader-spinner
+- Vercel
+- Webpack
+- Babel
 
 ## Getting Started
 
