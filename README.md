@@ -1,25 +1,79 @@
 <h1 align='center'>TrackIt</h1>
 
-TrackIt is a project developed for Driven Software Engineer bootcamp for ending the React and SPA module, you can check the deployed version by this [link](https://track-it-umber.vercel.app/). This app consists on a tracker for specific habits, to estimulate users to start incorporating some habits in their day-to-day life, such as meditate, read a book, study another language, etc. In the app, the user can create new habits and set for which days this habit will be tracked, check and uncheck habits daily and evaluate the users history in a calendar.
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://track-it-umber.vercel.app/">
+      <img src="./src/Components/Shared/assets/TrackIt Demo.gif" align="center" />
+  </a>
 
-<h2>Project innitialization</h2>
+  <h3 align="center">TrackIt</h3>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <p align="center">
+    Keep track of all your chores in a daily basis.
+    <br />
+    <br />
+    <a href="https://track-it-umber.vercel.app/">View Demo</a>
+    <br />
+  </p>
+</p>
 
-<h2>Run project localy</h2>
+## About
 
-In the project directory, you can run:
+This is an web application in which you can register habits you want to adapt to your routine and keep on track if you're doing them.
+So you can check your progress and the days you performed all the listed habits by communicating with an API server.
 
-### `npm start`
+- Sign Up
+- Login
+- List all habits for the current day
+- Count the sequence of habits performed and the highest sequence
+- Add habits
+- Remove habits
+- Check your history and progress
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The following tools and frameworks were used in the construction of the project:
+<p>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/axios%20-%2320232a.svg?&style=for-the-badge&color=informational'>
+  <img style='margin: 5px;' src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/react-icons%20-%2320232a.svg?&style=for-the-badge&color=f28dc7&logo=react-icons&logoColor=%2361DAFB'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white'>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white'>
+</p>
 
-<h2>Learn more</h2>
+## Getting Started
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To get a local copy up and running follow these simple steps.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+```sh
+npm install npm@latest -g
+```
+
+### Installation
+
+1. Clone this front-end repo
+```sh
+git clone https://github.com/leandrodcs/trackIt.git
+```
+2. Install NPM packages for the repo
+```sh
+npm install
+```
+
+### Running
+
+1. On the created clone repo use the following command
+```sh
+npm start
+```
+
+<!-- Developer -->
+## Developer
+
+* [Gabriel Salateo Rosin ](https://github.com/gabao55)
