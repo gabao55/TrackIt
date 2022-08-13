@@ -37,7 +37,7 @@ The following tools and frameworks were used in the construction of the project:
 
 - React.js
 - Axios
-- React Route
+- React Router Dom
 - Syled-components
 - ion-icons, dayjs, React circular-progress-bar, React Calendar, React loader-spinner
 - Vercel
