@@ -1,9 +1,9 @@
-import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../../Contexts/UserContext";
+import { FooterWrapper } from "./styles";
 
 export default function Footer() {
     const { userData } = useContext(UserContext);
@@ -29,31 +29,3 @@ export default function Footer() {
         </FooterWrapper>
     )
 }
-
-const FooterWrapper = styled.footer`
-    width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: #FFFFFF;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-
-    div {
-        width: 90px;
-        height: 90px;
-        padding: 6px;
-        margin-bottom: 48px;
-        background-color: #52B6FF;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-
-    p {
-        font-size: 18px;
-        color: #52B6FF;
-        cursor: pointer;
-    }
-`;

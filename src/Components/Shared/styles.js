@@ -27,4 +27,60 @@ const MainWrapper = styled.main`
     }
 `;
 
-export {MainWrapper};
+const NavWrapper = styled.nav`
+    width: 100%;
+    height: 70px;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #126BA5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+    h1 {
+        font-family: 'Playball';
+        font-size: 40px;
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+
+    img {
+        width: 51px;
+        height: 51px;
+        border-radius: 50%;
+    }
+`;
+
+const FooterWrapper = styled.footer`
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    div {
+        width: 90px;
+        height: 90px;
+        padding: 6px;
+        margin-bottom: 48px;
+        background-color: #52B6FF;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    p {
+        font-size: 18px;
+        color: #52B6FF;
+        cursor: pointer;
+    }
+`;
+
+export { MainWrapper, NavWrapper, FooterWrapper };
