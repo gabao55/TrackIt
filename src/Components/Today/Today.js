@@ -5,7 +5,7 @@ import checkmark from "../Shared/assets/Checkmark.png";
 import {DayWrapper, ListWrapper, HabitsDetails, HabitsCheckmark, Colored } from "./styles";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../Contexts/UserContext";
-import { checkHabit, getTodayHabits, uncheckHabit } from "../Services/trackit";
+import { checkHabit, getTodayHabits, uncheckHabit } from "../../Services/trackit";
 import dayjs from "dayjs";
 
 export default function Today() {

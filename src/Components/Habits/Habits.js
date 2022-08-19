@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { useContext, useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import UserContext from "../../Contexts/UserContext";
-import { createHabit, deleteHabit, getAllHabits } from "../Services/trackit";
+import { createHabit, deleteHabit, getAllHabits } from "../../Services/trackit";
 import Footer from "../Shared/Footer";
 import Navbar from "../Shared/Navbar";
 import { MainWrapper } from "../Shared/styles";

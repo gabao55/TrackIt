@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../Services/trackit";
+import { registerUser } from "../../Services/trackit";
 import { Brand, Form, Wrapper } from "./FormStyle";
 import { ThreeDots } from  'react-loader-spinner';
+import { useForm } from "./useForm";
 
 export default function Register() {
-    const [form, setForm] = useState({});
+    const [form, handleForm] = useForm({
+        email: "",
+        password: "",
+        name: "",
+        image: ""
+    });
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-
-    function handleForm({ name, value }) {
-        setForm({
-            ...form,
-            [name]: value,
-        });
-    }
 
     function sendForm(e) {
         e.preventDefault();
@@ -39,12 +38,8 @@ export default function Register() {
                     type="email" 
                     placeholder="email" 
                     name="email"
-                    onChange={(e) => {
-                        handleForm({
-                            name: e.target.name,
-                            value: e.target.value
-                        })
-                    }}
+                    value={form.email}
+                    onChange={handleForm}
                     required
                     disabled={isLoading}
                  />
@@ -52,12 +47,8 @@ export default function Register() {
                     type="password" 
                     placeholder="senha" 
                     name="password"
-                    onChange={(e) => {
-                        handleForm({
-                            name: e.target.name,
-                            value: e.target.value
-                        })
-                    }}
+                    value={form.password}
+                    onChange={handleForm}
                     required
                     disabled={isLoading}
                  />
@@ -65,27 +56,19 @@ export default function Register() {
                     type="text" 
                     placeholder="nome" 
                     name="name"
-                    onChange={(e) => {
-                        handleForm({
-                            name: e.target.name,
-                            value: e.target.value
-                        })
-                    }}
+                    value={form.name}
+                    onChange={handleForm}
                     required
-                    disabled={isLoading ? true : false}
+                    disabled={isLoading}
                  />
                 <input
                     type="url" 
                     placeholder="foto" 
                     name="image"
-                    onChange={(e) => {
-                        handleForm({
-                            name: e.target.name,
-                            value: e.target.value
-                        })
-                    }}
+                    value={form.image}
+                    onChange={handleForm}
                     required
-                    disabled={isLoading ? true : false}
+                    disabled={isLoading}
                  />
                  {isLoading ?
                     <button><ThreeDots color="#FFFFFF" height={40} width={40} /></button> :

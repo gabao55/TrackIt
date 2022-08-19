@@ -4,7 +4,7 @@ import Navbar from "../Shared/Navbar";
 import { MainWrapper } from "../Shared/styles";
 import Calendar from 'react-calendar'
 import { useContext, useEffect, useState } from "react";
-import { getHistory } from "../Services/trackit";
+import { getHistory } from "../../Services/trackit";
 import UserContext from "../../Contexts/UserContext";
 import 'react-calendar/dist/Calendar.css';
 import styled from "styled-components";

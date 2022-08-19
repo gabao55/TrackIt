@@ -2,22 +2,19 @@ import { useContext, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../Contexts/UserContext";
-import { loginUser } from "../Services/trackit";
+import { loginUser } from "../../Services/trackit";
 import { Brand, Form, Wrapper } from "./FormStyle";
+import { useForm } from "./useForm";
 
 export default function Login() {
-    const [form, setForm] = useState({});
+    const [form, handleForm] = useForm({
+        email: "",
+        password: ""
+    });
     const [isLoading, setIsLoading] = useState(false);
     const { setUserData } = useContext(UserContext);
     
     const navigate = useNavigate();
-
-    function handleForm({ name, value }) {
-        setForm({
-            ...form,
-            [name]: value,
-        });
-    }
 
     function sendForm(e) {
         e.preventDefault();
@@ -43,12 +40,8 @@ export default function Login() {
                     type="email" 
                     placeholder="email" 
                     name="email"
-                    onChange={(e) => {
-                        handleForm({
-                            name: e.target.name,
-                            value: e.target.value
-                        })
-                    }}
+                    value={form.email}
+                    onChange={handleForm}
                     required
                     disabled={isLoading}
                  />
@@ -56,12 +49,8 @@ export default function Login() {
                     type="password" 
                     placeholder="senha" 
                     name="password"
-                    onChange={(e) => {
-                        handleForm({
-                            name: e.target.name,
-                            value: e.target.value
-                        })
-                    }}
+                    value={form.password}
+                    onChange={handleForm}
                     required
                     disabled={isLoading}
                  />
