@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../../Contexts/UserContext";
 import { loginUser } from "../../Services/trackit";
 import { Brand, Form, Wrapper } from "./FormStyle";
-import { useForm } from "./useForm";
+import { useForm } from "../Shared/useForm";
 
 export default function Login() {
     const [form, handleForm] = useForm({
-        email: "",
-        password: ""
+        initState: {
+            email: "",
+            password: "",
+        }
     });
     const [isLoading, setIsLoading] = useState(false);
     const { setUserData } = useContext(UserContext);

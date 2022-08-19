@@ -3,14 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../Services/trackit";
 import { Brand, Form, Wrapper } from "./FormStyle";
 import { ThreeDots } from  'react-loader-spinner';
-import { useForm } from "./useForm";
+import { useForm } from "../Shared/useForm";
 
 export default function Register() {
     const [form, handleForm] = useForm({
-        email: "",
-        password: "",
-        name: "",
-        image: ""
+        initState: {
+            email: "",
+            password: "",
+            name: "",
+            image: ""
+        }
     });
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();

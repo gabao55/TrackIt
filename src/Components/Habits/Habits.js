@@ -6,12 +6,15 @@ import { createHabit, deleteHabit, getAllHabits } from "../../Services/trackit";
 import Footer from "../Shared/Footer";
 import Navbar from "../Shared/Navbar";
 import { MainWrapper } from "../Shared/styles";
+import { useForm } from "../Shared/useForm";
 import { CreateHabitWrapper, CreateHabit, ActionWrapper, HabitsWrapper, DaysWrapper } from "./styles";
 
 export default function Habits() {
     const [isCreatingHabit, setIsCreatingHabit] = useState(false);
-    const [form, setForm] = useState({
-        name: ""
+    const [form, handleForm, resetForm] = useForm({
+        initState: {
+            name: ""
+        }
     });
     const [isLoading, setIsLoading] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
@@ -60,13 +63,6 @@ export default function Habits() {
         });
     }, [isLoading, isDeleting]);
 
-    function handleForm({ name, value }) {
-        setForm({
-            ...form,
-            [name]: value,
-        });
-    }
-
     function sendForm(e) {
         e.preventDefault();
         setIsLoading(!isLoading);
@@ -88,9 +84,7 @@ export default function Habits() {
             setIsLoading(false);
             setIsCreatingHabit(false);
             setHabitDays([]);
-            setForm({
-                name: "",
-            });
+            resetForm();
         })
         .catch(() => {
             alert("Erro ao criar hábito");
@@ -112,12 +106,7 @@ export default function Habits() {
                         type="text" 
                         placeholder="nome do hábito" 
                         name="name"
-                        onChange={(e) => {
-                            handleForm({
-                                name: e.target.name,
-                                value: e.target.value
-                            })
-                        }}
+                        onChange={handleForm}
                         value={form.name}
                         required
                         disabled={isLoading ? true : false}
