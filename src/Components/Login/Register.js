@@ -23,7 +23,7 @@ export default function Register() {
         const promise = registerUser(form)
 
         promise
-        .then(response => {
+        .then(() => {
             navigate('/');
         })
         .catch(() => {
