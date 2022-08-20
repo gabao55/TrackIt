@@ -7,10 +7,35 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "../../Contexts/UserContext";
 import { checkHabit, getTodayHabits, uncheckHabit } from "../../Services/trackit";
 import dayjs from "dayjs";
+import translateDay from "./daysCorrespondence";
 
 export default function Today() {
-    const [habits, setHabits] = useState([]);
+    const { userData } = useContext(UserContext);
+    
+    return (
+        <>
+            <Navbar />
+            <MainWrapper>
+                <DayWrapper>
+                    <h2>{translateDay(dayjs().day())}, {dayjs().date()}/{dayjs().month()+1}</h2>
+                    {
+                        userData.completed > 0 ?
+                        <span>{(userData.completed/userData.total*100).toFixed(0)}% dos hábitos concluídos</span> :
+                        <p>Nenhum hábito concluído ainda!</p>
+                    }
+                </DayWrapper>
+                <ListWrapper>
+                    <HabitsList />
+                </ListWrapper>
+            </MainWrapper>
+            <Footer />
+        </>
+    )
+}
+
+function HabitsList() {
     const [changeState, setChangeState] = useState(0);
+    const [habits, setHabits] = useState([]);
     const { userData, setUserData } = useContext(UserContext);
     const config = {
         headers: {
@@ -29,34 +54,6 @@ export default function Today() {
         });
     }, [changeState]);
 
-    function translateDay(dayNumber) {
-        let conversion;
-        switch (dayNumber) {
-            case 0:
-                conversion = "Domingo";
-                break;
-            case 1:
-                conversion = "Segunda";
-                break;
-            case 2:
-                conversion = "Terça";
-                break;
-            case 3:
-                conversion = "Quarta";
-                break;
-            case 4:
-                conversion = "Quinta";
-                break;
-            case 5:
-                conversion = "Sexta";
-                break;
-            default:
-                conversion = "Sábado"
-        }
-
-        return conversion
-    }
-
     function check(habitId) {
         checkHabit(habitId, config)
         .then(() => {
@@ -72,7 +69,7 @@ export default function Today() {
 
     function uncheck(habitId) {
         uncheckHabit(habitId, config)
-        .then((response) => {
+        .then(() => {
             setUserData({
                 ...userData,
                 completed: userData.completed - 1
@@ -82,33 +79,19 @@ export default function Today() {
         })
         .catch((error) => console.log(error));
     }
-    
+
     return (
         <>
-            <Navbar />
-            <MainWrapper>
-                <DayWrapper>
-                    <h2>{translateDay(dayjs().day())}, {dayjs().date()}/{dayjs().month()+1}</h2>
-                    {
-                        userData.completed > 0 ?
-                        <span>{(userData.completed/userData.total*100).toFixed(0)}% dos hábitos concluídos</span> :
-                        <p>Nenhum hábito concluído ainda!</p>
-                    }
-                </DayWrapper>
-                <ListWrapper>
-                    {
-                        habits.length === 0 ?
-                        "" :
-                        <HabitDetail habits={habits} check={check} uncheck={uncheck} />
-                    }
-                </ListWrapper>
-            </MainWrapper>
-            <Footer />
+            {
+                habits.length === 0 ?
+                "" :
+                <HabitsListDetails habits={habits} check={check} uncheck={uncheck} />
+            }            
         </>
     )
 }
 
-function HabitDetail({ habits, check, uncheck }) {
+function HabitsListDetails({ habits, check, uncheck }) {
     return (
         <>
             {Object.keys(habits).map(habitIndex => { 
@@ -127,7 +110,7 @@ function HabitDetail({ habits, check, uncheck }) {
                         <HabitsCheckmark onClick={() => {check(habit.id)}}>
                             <img src={checkmark} alt="checkmark icon" />
                         </HabitsCheckmark>
-                     }
+                    }
                 </li>
             )})}
         </>
